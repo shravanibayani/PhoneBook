@@ -68,8 +68,8 @@ const App = () => {
     }
     else {
       personsService.create(nameObj)
-        .then(returnedPerson => {
-          setPersons(persons.concat(returnedPerson));
+        .then(returnedPersons => {
+          setPersons(returnedPersons);
           setErrorType('success');
           setErrorMsg('Added successfully!');
 
@@ -98,9 +98,9 @@ const App = () => {
     const person = persons.find(person => person.id === id);
     if (person && window.confirm(`Delete ${person.name} ?`)) {
       personsService.deleteContact(id)
-        .then(() => {
+        .then((returnedPersons) => {
           console.log('Deleted successfully');
-          setPersons(persons.filter(person => person.id !== id));
+          setPersons(returnedPersons);
           setErrorMsg('Deleted successfully!');
           setErrorType('success');
           setTimeout(() => {

@@ -58,7 +58,7 @@ app.get('/api/persons/:id', (req, res) => {
 app.delete('/api/persons/:id', (req, res) => {
     const id = req.params.id
     persons = persons.filter(p => p.id !== id)
-    res.status(204).end()
+    res.status(200).json(persons)
 })
 const generateID = () => {
     const newID = Math.floor(Math.random() * (100 - 1 + 1))
@@ -91,7 +91,7 @@ app.post('/api/persons', (req, res) => {
     }
     console.log(req.headers)
     persons = persons.concat(person)
-    res.json(person)
+    res.json(persons)
 })
 
 const unknownEndpoint = (request, response) => {
