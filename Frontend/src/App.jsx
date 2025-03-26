@@ -82,13 +82,15 @@ const App = () => {
         })
         .catch(error => {
           console.log('error: ', error);
-          setErrorMsg('Some error occurred :(');
-          setErrorType('error')
+          const errorMessage = error.response?.data?.error || 'Something went wrong';
+          setErrorMsg(errorMessage);
+          setErrorType('error');
           setTimeout(() => {
             setErrorMsg('');
-            setErrorType('')
+            setErrorType('');
           }, 5000);
-        })
+        });
+        
 
     }
 
